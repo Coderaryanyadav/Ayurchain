@@ -5,7 +5,7 @@ AYURCHAIN is a diploma-level Web2 + Web3 hybrid application designed to store Ay
 
 ---
 
-## 🍃 Features
+## Features
 - **Admin Dashboard**: Real-time analytics, dynamic charts (Chart.js), and quick action controls.
 - **Off-Chain Storage (MySQL)**: Stores detailed botanical attributes, herbs, categories, and file paths.
 - **On-Chain Immutability (Solidity Smart Contract)**: Stores 64-character SHA-256 hashes (`certificateHash`, `recordHash`, `timestamp`).
@@ -16,7 +16,7 @@ AYURCHAIN is a diploma-level Web2 + Web3 hybrid application designed to store Ay
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 - **Frontend**: HTML5, CSS3, Vanilla JavaScript, Bootstrap 5, Chart.js
 - **Backend**: PHP (PDO - PHP Data Objects)
 - **Database**: MySQL / MariaDB (phpMyAdmin)
@@ -25,7 +25,7 @@ AYURCHAIN is a diploma-level Web2 + Web3 hybrid application designed to store Ay
 
 ---
 
-## 🚀 Local Setup & Installation
+## Local Setup & Installation
 
 1. **Clone the Repository**:
    ```bash
@@ -55,11 +55,11 @@ AYURCHAIN is a diploma-level Web2 + Web3 hybrid application designed to store Ay
 
 ---
 
-## 🔒 Security Measures
+## Security Measures
 - **SQL Injection**: 100% Parameterized PDO prepared statements.
 - **XSS Protection**: HTML entity encoding (`htmlspecialchars`).
 - **CSRF Protection**: Cryptographic token generation (`generate_csrf_token()`) and verification (`hash_equals()`).
 - **Secure File Uploads**: Strict MIME validation (`mime_content_type`), 5MB size limit, and randomized file names.
 
 ---
-*Diploma IT Project &copy; 2026 AYURCHAIN. All Rights Reserved.*
+*Aryan , Hitansh and Nirmay &copy; 2026 AYURCHAIN. All Rights Reserved.*

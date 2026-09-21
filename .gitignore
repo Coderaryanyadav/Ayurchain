@@ -1,0 +1,15 @@
+# System / IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# Environment & Config local overrides
+.env
+app/config/config.php
+
+# Storage & Uploads Security
+storage/certificates/*
+!storage/certificates/.gitkeep
+uploads/

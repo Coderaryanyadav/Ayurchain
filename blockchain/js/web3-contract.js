@@ -44,7 +44,8 @@ async function sendMedicineToBlockchain(medData) {
     const block = await provider.getBlock(receipt.blockNumber);
     const timestamp = block ? block.timestamp : Math.floor(Date.now() / 1000);
 
-    const response = await fetch('api/save_blockchain_record.php', {
+    const apiUrl = (window.BASE_URL || '/') + 'app/api/save_blockchain_record.php';
+    const response = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -91,7 +92,8 @@ async function addStatusUpdateToBlockchain(medicineId, batchNumber, status, loca
     const receipt = await tx.wait(); // Wait for mining
 
     // Call PHP API to store status & txHash in MySQL medicine_history table
-    const response = await fetch('api/add_history_record.php', {
+    const apiUrl = (window.BASE_URL || '/') + 'app/api/add_history_record.php';
+    const response = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
