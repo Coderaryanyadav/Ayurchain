@@ -39,7 +39,7 @@ try {
     $verified_records = $stmt4->fetchColumn();
 
     // 5. Failed Verification Attempts Count (from audit log or failed status queries)
-    $stmt5 = $pdo->query("SELECT COUNT(*) FROM medicine_history WHERE action_type = 'VERIFICATION_FAILED' OR status = 'FAILED'");
+    $stmt5 = $pdo->query("SELECT COUNT(*) FROM medicine_history WHERE status = 'FAILED' OR status = 'VERIFICATION_FAILED'");
     $failed_attempts = $stmt5->fetchColumn();
 
     // 6. Category Breakdown for Chart.js

@@ -63,13 +63,16 @@ try {
 
     // 2. Add audit log to medicine_history
     $hist_stmt = $pdo->prepare("
-        INSERT INTO medicine_history (medicine_id, action_type, action_details, performed_by)
-        VALUES (:medicine_id, 'BLOCKCHAIN_MINED', :details, :performed_by)
+        INSERT INTO medicine_history (medicine_id, batch_number, status, action_details, transaction_hash, block_number, performed_by)
+        VALUES (:medicine_id, :batch_number, 'Manufactured', :details, :transaction_hash, :block_number, :performed_by)
     ");
     $hist_stmt->execute([
-        'medicine_id'  => $medicine_id,
-        'details'      => "Transaction mined on block #" . $block_number . " (Tx: " . substr($transaction_hash, 0, 10) . "...)",
-        'performed_by' => $_SESSION['admin_username'] ?? 'Admin'
+        'medicine_id'      => $medicine_id,
+        'batch_number'     => $batch_number,
+        'details'          => "Transaction mined on block #" . $block_number . " (Tx: " . substr($transaction_hash, 0, 10) . "...)",
+        'transaction_hash' => $transaction_hash,
+        'block_number'     => $block_number,
+        'performed_by'     => $_SESSION['admin_username'] ?? 'Admin'
     ]);
 
     $pdo->commit();

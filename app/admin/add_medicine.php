@@ -196,11 +196,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
 
                 $stmt_history = $pdo->prepare("
-                    INSERT INTO medicine_history (medicine_id, action_type, action_details, performed_by)
-                    VALUES (:medicine_id, 'REGISTERED', 'Medicine record saved in database.', :performed_by)
+                    INSERT INTO medicine_history (medicine_id, batch_number, status, action_details, performed_by)
+                    VALUES (:medicine_id, :batch_number, 'Manufactured', 'Medicine record saved in database.', :performed_by)
                 ");
                 $stmt_history->execute([
                     'medicine_id'  => $fields['medicine_id'],
+                    'batch_number' => $fields['batch_number'],
                     'performed_by' => $_SESSION['admin_username'] ?? 'Admin'
                 ]);
 

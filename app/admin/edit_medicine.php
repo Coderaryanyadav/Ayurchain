@@ -83,8 +83,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Log update action in medicine_history audit table
             $hist_stmt = $pdo->prepare("
-                INSERT INTO medicine_history (medicine_id, action_type, action_details, performed_by)
-                VALUES (:medicine_id, 'UPDATED', 'Medicine details modified by admin.', :performed_by)
+                INSERT INTO medicine_history (medicine_id, status, action_details, performed_by)
+                VALUES (:medicine_id, 'Updated', 'Medicine details modified by admin.', :performed_by)
             ");
             $hist_stmt->execute([
                 'medicine_id'  => $medicine_id,
