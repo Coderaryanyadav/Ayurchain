@@ -259,11 +259,14 @@ require_once __DIR__ . '/../includes/header.php';
                             <span id="web3_status_text" class="fw-bold">Initializing MetaMask...</span>
                         </div>
 
-                        <div class="d-flex justify-content-center gap-3">
+                        <div class="d-flex flex-wrap justify-content-center gap-3">
                             <button id="btn_mine_blockchain" class="btn btn-warning btn-lg fw-bold px-4 shadow">
                                 <i class="fa-solid fa-link me-2"></i> Sign & Mine on Blockchain via MetaMask
                             </button>
-                            <a href="view_medicine.php?id=<?php echo urlencode($web3_payload['medicine_id']); ?>" class="btn btn-outline-secondary btn-lg">
+                            <button id="btn_simulate_mine" type="button" class="btn btn-success btn-lg fw-bold px-4 shadow">
+                                <i class="fa-solid fa-wand-magic-sparkles me-2"></i> Simulate Mining (Demo Mode)
+                            </button>
+                            <a href="../public/view_medicine.php?id=<?php echo urlencode($web3_payload['medicine_id']); ?>" class="btn btn-outline-secondary btn-lg">
                                 Skip to View Details
                             </a>
                         </div>
@@ -301,7 +304,56 @@ require_once __DIR__ . '/../includes/header.php';
                     } catch (err) {
                         btn.disabled = false;
                         statusBox.className = "alert alert-danger col-md-8 mx-auto p-3 mb-3";
-                        statusText.innerHTML = "<i class='fa-solid fa-circle-xmark me-2'></i><strong>MetaMask Error:</strong> " + err.message;
+                        statusText.innerHTML = "<i class='fa-solid fa-circle-xmark me-2'></i><strong>MetaMask Error:</strong> " + err.message + "<br><small class='mt-2 d-block'>Tip: You can also click <strong>'Simulate Mining (Demo Mode)'</strong> to complete the presentation demo without MetaMask.</small>";
+                    }
+                });
+
+                document.getElementById('btn_simulate_mine').addEventListener('click', async function() {
+                    const btn = this;
+                    const statusBox = document.getElementById('web3_status_box');
+                    const statusText = document.getElementById('web3_status_text');
+
+                    btn.disabled = true;
+                    statusBox.classList.remove('d-none');
+                    statusBox.className = "alert alert-info col-md-8 mx-auto p-3 mb-3";
+                    statusText.innerHTML = "<i class='fa-solid fa-gear fa-spin me-2'></i>Simulating Ethereum block consensus and generating cryptographic transaction receipt...";
+
+                    const payload = <?php echo json_encode($web3_payload); ?>;
+                    const randomHex = Array.from(crypto.getRandomValues(new Uint8Array(32))).map(b => b.toString(16).padStart(2, '0')).join('');
+                    const mockTxHash = "0x" + randomHex;
+                    const mockBlockNumber = Math.floor(Math.random() * 50) + 100;
+                    const timestamp = Math.floor(Date.now() / 1000);
+
+                    try {
+                        const apiUrl = (window.BASE_URL || '/') + 'app/api/save_blockchain_record.php';
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                medicine_id: payload.medicine_id,
+                                batch_number: payload.batch_number,
+                                certificate_hash: payload.certificate_hash,
+                                record_hash: payload.record_hash,
+                                transaction_hash: mockTxHash,
+                                block_number: mockBlockNumber,
+                                timestamp: timestamp
+                            })
+                        });
+
+                        const result = await response.json();
+                        if (!result.success) throw new Error(result.message);
+
+                        statusBox.className = "alert alert-success col-md-8 mx-auto p-3 mb-3";
+                        statusText.innerHTML = "<i class='fa-solid fa-circle-check me-2'></i><strong>SUCCESS!</strong> Simulated block mined into Block #" + mockBlockNumber + "<br><small class='font-monospace text-break'>Tx: " + mockTxHash + "</small>";
+
+                        setTimeout(function() {
+                            window.location.href = "../public/view_medicine.php?id=" + encodeURIComponent(payload.medicine_id);
+                        }, 2000);
+
+                    } catch (err) {
+                        btn.disabled = false;
+                        statusBox.className = "alert alert-danger col-md-8 mx-auto p-3 mb-3";
+                        statusText.innerHTML = "<i class='fa-solid fa-circle-xmark me-2'></i><strong>Demo Save Error:</strong> " + err.message;
                     }
                 });
                 </script>
@@ -309,8 +361,11 @@ require_once __DIR__ . '/../includes/header.php';
 
             <!-- Add Medicine Form -->
             <div class="card card-ayur shadow-sm">
-                <div class="card-header card-header-ayur py-3">
+                <div class="card-header card-header-ayur py-3 d-flex justify-content-between align-items-center">
                     <h4 class="mb-0 fw-bold"><i class="fa-solid fa-plus-circle me-2"></i>Add Ayurvedic Medicine Record</h4>
+                    <button type="button" class="btn btn-sm btn-outline-warning text-white" onclick="fillDemoMedicineData()">
+                        <i class="fa-solid fa-wand-magic-sparkles me-1"></i> ⚡ Fill Demo Data
+                    </button>
                 </div>
                 <div class="card-body p-4">
 
