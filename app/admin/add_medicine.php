@@ -299,8 +299,8 @@ require_once __DIR__ . '/../includes/header.php';
                         btn.classList.add('d-none');
 
                         setTimeout(function() {
-                            window.location.href = "view_medicine.php?id=" + encodeURIComponent(payload.medicine_id);
-                        }, 2500);
+                            window.location.href = "../public/view_medicine.php?id=" + encodeURIComponent(payload.medicine_id);
+                        }, 2000);
 
                     } catch (err) {
                         btn.disabled = false;
