@@ -1,168 +1,115 @@
-# AYURCHAIN – How to Run the Project & Complete Operating Guide
+# 🌿 AYURCHAIN – Simple Step-by-Step Guide
 
-> **System Name:** AYURCHAIN – Blockchain-Based Ayurvedic Medicine Storage and Verification System  
-> **Repository:** [https://github.com/Coderaryanyadav/Ayurchain](https://github.com/Coderaryanyadav/Ayurchain)  
-> **Target Audience:** College Faculty, Evaluators, and IT Students
-
----
-
-## 1. Overview & Architecture
-
-**AYURCHAIN** combines traditional Ayurvedic medicine quality record-keeping with Ethereum blockchain tamper-evidence:
-- **Off-Chain Database (MySQL):** Stores detailed medicine batch information, ingredient compositions, lab certificates, and manufacturing dates.
-- **On-Chain Testnet (Ganache / Ethereum):** Stores cryptographic SHA-256 hashes (`certificate_hash` and `record_hash`) and lifecycle status transitions on a Solidity smart contract.
-- **Client Application (PHP / JS / Ethers.js / Bootstrap):** Responsive web portal for public verification and admin management with MetaMask wallet connectivity.
-
-```
-+-------------------------------------------------------------+
-|                      AYURCHAIN SYSTEM                       |
-+-------------------------------------------------------------+
-|                                                             |
-|  [ Public Users ]                [ Admin / Manufacturers ]  |
-|         │                                    │              |
-|         ▼                                    ▼              |
-|  Verify & QR Lookup                   Add / Manage Batches  |
-|         │                                    │              |
-|         ▼                                    ▼              |
-|  +──────────────+                    +──────────────+       |
-|  |  MySQL DB    | <────────────────> |  MetaMask &  |       |
-|  |  (Off-Chain) |                    |  Ethers.js   |       |
-|  +──────────────+                    +──────────────+       |
-|         ▲                                    │              |
-|         │    Compare Hashes                  ▼              |
-|         └─── [ Tamper-Evident Check ] ── [ Smart Contract ] |
-|                                          [ (Ganache/Eth)  ] |
-+-------------------------------------------------------------+
-```
+**Project:** Blockchain-Based Ayurvedic Medicine Storage and Verification System  
+**GitHub Repository:** [https://github.com/Coderaryanyadav/Ayurchain](https://github.com/Coderaryanyadav/Ayurchain)  
 
 ---
 
-## 2. Quick Setup Options
+## ⚡ Super Quick Start (In 3 Steps)
 
-### Option A: Automatic Setup (Recommended for Windows)
-
-1. Open the project folder in terminal or file explorer.
-2. Double-click `setup/setup.bat` (or run PowerShell as Administrator: `powershell -ExecutionPolicy Bypass -File setup/setup.ps1`).
-3. The script will:
-   - Verify PHP, Apache, and MySQL
-   - Create database `ayurvedic_blockchain`
-   - Import `database/database.sql` and `database/sample-data.sql`
-   - Ensure storage directory permissions (`storage/certificates/`)
-   - Launch your browser to the web portal
-
----
-
-### Option B: Manual Setup in 4 Steps
-
-#### Step 1: Start MySQL & Apache in XAMPP
-1. Open **XAMPP Control Panel**.
-2. Click **Start** for **Apache** and **MySQL**.
-3. Copy this project folder into `C:\xampp\htdocs\ayurvedic-blockchain` (or run the built-in PHP server).
-
-#### Step 2: Import Database
-1. Open your browser to `http://localhost/phpmyadmin`.
-2. Create a new database named `ayurvedic_blockchain` (Collation: `utf8mb4_unicode_ci`).
-3. Click **Import** -> Select `database/database.sql` -> Click **Go**.
-4. *(Optional Sample Data)*: Click **Import** -> Select `database/sample-data.sql` -> Click **Go**.
-
-#### Step 3: Start Ganache & Connect MetaMask
-1. Open **Ganache** (Quickstart Ethereum workspace on `HTTP://127.0.0.1:7545`, Network ID: `5777`).
-2. Open **MetaMask** in your browser:
-   - Add a custom network:
-     - **Network Name:** Ganache Local
-     - **RPC URL:** `http://127.0.0.1:7545`
-     - **Chain ID:** `1337` (or `5777`)
-     - **Currency Symbol:** `ETH`
-   - Import an account using one of the Private Keys displayed in Ganache.
-
-#### Step 4: Deploy Smart Contract
-1. Open [https://remix.ethereum.org](https://remix.ethereum.org).
-2. Create a new file `AyurvedicMedicineVerification.sol` and paste the contents of `blockchain/contracts/AyurvedicMedicineVerification.sol`.
-3. Under **Solidity Compiler**, select compiler `0.8.0` or higher and click **Compile**.
-4. Under **Deploy & Run Transactions**:
-   - Environment: **Injected Provider - MetaMask**
-   - Click **Deploy** and confirm the transaction in MetaMask.
-5. Copy the deployed contract address (e.g. `0x123...`).
-6. Open `blockchain/js/contract-config.js` and paste your address:
-   ```javascript
-   const CONTRACT_ADDRESS = "0xYourDeployedContractAddressHere";
-   ```
+### 📌 Step 1: Start XAMPP & Import Database
+1. Open **XAMPP Control Panel** on your computer.
+2. Click **Start** button next to **Apache** and **MySQL** (both should turn green).
+3. Open your browser and go to: [http://localhost/phpmyadmin](http://localhost/phpmyadmin)
+4. Click **New** on the left menu:
+   - Database name: `ayurvedic_blockchain`
+   - Click **Create**
+5. Click on the **SQL** tab at the top.
+6. Open the file [`database/database.sql`](database/database.sql), copy everything, paste into SQL box, and click **Go**.
+7. Open the file [`database/sample-data.sql`](database/sample-data.sql), copy everything, paste into SQL box, and click **Go**.
 
 ---
 
-## 3. Running with PHP Built-in Server (Alternative without XAMPP)
+### 📌 Step 2: Open the Website
+Ensure this project folder is located in `C:\xampp\htdocs\ayurvedic-blockchain`  
+*(or run `php -S localhost:8000` in the terminal inside this folder)*.
 
-If running directly via PHP CLI without Apache:
-```bash
-php -S localhost:8000
-```
-Then visit: [http://localhost:8000/app/public/index.php](http://localhost:8000/app/public/index.php)
+Open these URLs in your web browser:
+
+| Page | URL | Purpose |
+| :--- | :--- | :--- |
+| 🏠 **Home Page** | `http://localhost/ayurvedic-blockchain/app/public/index.php` | Search medicines & see statistics |
+| 🛡️ **Verify Portal** | `http://localhost/ayurvedic-blockchain/app/public/verify.php` | Test verification & tamper detection |
+| 🔐 **Admin Login** | `http://localhost/ayurvedic-blockchain/app/auth/login.php` | Admin panel login |
 
 ---
 
-## 4. Default Admin Credentials
+### 📌 Step 3: Admin Login Credentials
 
-- **Admin Login URL:** `http://localhost/ayurvedic-blockchain/app/auth/login.php`
 - **Email:** `admin@ayurchain.org`
 - **Password:** `admin123`
 
 ---
 
-## 5. How Each Feature Works (Step-by-Step Flow)
+## 🎬 How to Show the Demo to Teachers / Evaluators
 
-### 1. Adding a Medicine Batch (Admin)
-1. Go to **Dashboard** -> **Add Medicine**.
-2. Fill in the Medicine ID (e.g., `AYU004`), Batch Number, Manufacturing Date, Expiry Date, and Ingredients.
-3. Upload a lab testing certificate (PDF, JPG, or PNG).
-4. The system automatically calculates:
-   - File SHA-256 hash
-   - Combined Record SHA-256 hash
-5. Click **Add Medicine & Record on Blockchain**.
-6. MetaMask pops up asking to confirm the `addMedicine()` transaction on the smart contract.
-7. Upon mining, the contract stores the tamper-evident hashes, and the exact block timestamp is recorded in MySQL.
-
-### 2. Verifying a Medicine (Public Consumer / Retailer)
-1. Go to **Verify Medicine** (`app/public/verify.php`).
-2. Enter Medicine ID (e.g., `AYU001`) or Batch Number.
-3. The system fetches the MySQL record and simultaneously queries the blockchain smart contract:
-   - **Match Found:** Displays **✓ Blockchain Record Verified** with block number, transaction hash, and timestamp.
-   - **Mismatch Found:** Displays **⚠ Verification Failed (Tamper Detected)**.
-4. *Important Notice:* Verification guarantees that the digital records, certificates, and batch parameters have not been tampered with since creation.
-
-### 3. QR Code Verification (Phase 9)
-1. On any medicine details page (`app/public/view_medicine.php?id=AYU001`), click the **QR Code** button.
-2. An interactive QR code is generated pointing to the public verification endpoint.
-3. Any smartphone camera can scan the code to instantly verify the batch.
-
-### 4. Supply Chain History Tracking
-1. Go to **Blockchain Records** (`app/admin/history.php`).
-2. View the chronological lifecycle updates (*Manufactured* -> *Dispatched* -> *Received* -> *Distributed* -> *Sold*).
-3. Each transition is signed by MetaMask and permanently recorded on the blockchain with full provenance.
+### 🧪 Demo 1: Show Public Blockchain Verification
+1. Open `http://localhost/ayurvedic-blockchain/app/public/verify.php`
+2. Click the green button: **"Demo Batch 1 (AYU001 - Ashwagandha)"**
+3. **What happens:**  
+   - Shows **✓ Blockchain Record Verified**
+   - Shows Block #101 and Transaction Hash
+   - Shows Lab Quality Certificate details and SHA-256 hash match!
 
 ---
 
-## 6. Project Directory Map
-
-```text
-AYURCHAIN/
-├── app/
-│   ├── admin/       # Dashboard, Add/Edit/Delete Medicine, History, Profile
-│   ├── public/      # Landing page, Public Search, Verify, Details, About
-│   ├── auth/        # Login & Logout
-│   ├── api/         # JSON endpoints for Ethers.js transaction saving
-│   ├── config/      # PDO database configuration
-│   └── includes/    # Header, Footer, Auth guards, Utility functions
-├── blockchain/
-│   ├── contracts/   # Solidity Smart Contract
-│   ├── js/          # Ethers.js integration & contract configuration
-│   └── README.md    # Step-by-step blockchain deployment guide
-├── assets/          # CSS themes, UI JavaScript, images & icons
-├── database/        # database.sql schema & sample-data.sql seed data
-├── storage/         # Secure storage for uploaded lab certificates
-├── setup/           # One-click Windows setup scripts (BAT & PS1)
-├── docs/            # Diploma IT project documentation & diagrams
-└── tests/           # QA testing checklists & test cases
-```
+### 🧪 Demo 2: Show Tamper Detection (Security Feature)
+1. On the same verify page, click the red button: **"Demo Tampered Batch (Tamper Alert)"**
+2. **What happens:**  
+   - Instantly shows **⚠ Verification Failed (Tampering Detected!)**
+   - Explains that someone tried to modify the record or certificate off-chain, and the blockchain cryptographic hash mismatch caught it!
 
 ---
-*Developed with PHP, MySQL, Solidity, Ethers.js, MetaMask, and Bootstrap 5.*
+
+### 🧪 Demo 3: Add a New Ayurvedic Medicine
+1. Log into Admin Panel (`http://localhost/ayurvedic-blockchain/app/auth/login.php`).
+2. Click **Add Medicine** on the top menu.
+3. Click the yellow button: **"⚡ Fill Demo Data"** (auto-fills all fields like Name, Batch, Expiry, Ingredients).
+4. Click **Save Medicine Record**.
+5. Click **"⚡ Simulate Mining (Demo Mode)"** (or use MetaMask with Ganache).
+6. **Result:** A new block is mined and the medicine is recorded permanently on the blockchain!
+
+---
+
+### 🧪 Demo 4: Show QR Code Verification
+1. Go to any medicine details page (e.g. `app/public/view_medicine.php?id=AYU001`).
+2. Click **"Generate QR Code"**.
+3. A QR code opens on screen. Anyone can scan it with a mobile phone camera to verify the medicine batch instantly!
+
+---
+
+### 🧪 Demo 5: Show Supply Chain History
+1. In the top navigation bar, click **Blockchain Records** (`app/admin/history.php`).
+2. Select any medicine batch.
+3. See every step in order:
+   - **Manufactured** (Plant #4)
+   - **Dispatched** (Central Logistics Hub, Delhi)
+   - **Received** (Cold Storage, Mumbai)
+4. Each step shows its own blockchain transaction hash and block number!
+
+---
+
+## ⚙️ Optional: Connecting Real MetaMask & Ganache
+
+If you want to show live MetaMask popups:
+1. Open **Ganache** (listening on `127.0.0.1:7545`).
+2. In MetaMask, add a custom network:
+   - RPC URL: `http://127.0.0.1:7545`
+   - Chain ID: `1337` (or `5777`)
+3. Deploy [`blockchain/contracts/AyurvedicMedicineVerification.sol`](blockchain/contracts/AyurvedicMedicineVerification.sol) in [Remix IDE](https://remix.ethereum.org).
+4. Paste the deployed contract address into [`blockchain/js/contract-config.js`](blockchain/js/contract-config.js).
+
+*(Note: The built-in Demo Simulator also works 100% offline without needing MetaMask or Ganache running).*
+
+---
+
+## ❓ Frequently Asked Questions (Troubleshooting)
+
+**Q: Database connection error?**  
+👉 Check if MySQL is running in XAMPP and make sure database name is `ayurvedic_blockchain`.
+
+**Q: CSS or JS styles not loading?**  
+👉 Make sure the project folder name inside `htdocs` is `ayurvedic-blockchain`.
+
+**Q: How to reset all sample data?**  
+👉 Re-import [`database/sample-data.sql`](database/sample-data.sql) in phpMyAdmin anytime.
