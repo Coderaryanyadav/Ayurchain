@@ -245,7 +245,7 @@ foreach ($history_records as $rec) {
 
                     <?php 
                         $stage_index++;
-                    endfor; 
+                    endforeach; 
                     ?>
                 </div>
             </div>

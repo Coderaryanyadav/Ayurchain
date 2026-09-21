@@ -4,7 +4,7 @@
 // File: blockchain/js/contract-config.js
 // ====================================================================
 
-const CONTRACT_ADDRESS = "0xd9145CCE52D386f254917e481eB44e9943F39138";
+const CONTRACT_ADDRESS = "0xaa50ac5f2a71a872b158F26d27b03E276bCA62D5";
 
 const CONTRACT_ABI = [
   {
