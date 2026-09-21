@@ -1,7 +1,7 @@
 USE `ayurvedic_blockchain`;
 
--- 1. Insert Demo Ayurvedic Medicines
-INSERT INTO `medicines` (
+-- 1. Insert Demo Ayurvedic Medicines (idempotent with INSERT IGNORE)
+INSERT IGNORE INTO `medicines` (
     `medicine_id`, 
     `medicine_name`, 
     `botanical_name`, 
@@ -13,10 +13,8 @@ INSERT INTO `medicines` (
     `batch_number`, 
     `source`, 
     `ingredients`, 
-    `dosage_instructions`, 
     `description`, 
-    `blockchain_status`, 
-    `qr_code_path`
+    `certificate_hash`
 ) VALUES
 (
     'AYU001', 
@@ -30,10 +28,8 @@ INSERT INTO `medicines` (
     'BATCH-ASH-2025-01', 
     'Madhya Pradesh Organic Cultivation Zone', 
     'Pure Ashwagandha (Withania somnifera) root extract powder', 
-    '1-2 teaspoons twice daily with warm milk or honey.', 
     'Premium standardized adaptogenic stress-relief herbal powder.', 
-    'RECORDED', 
-    ''
+    '3a7be4b84b8d7522d109f25712f6ecf911964f4347ecfe54be0ad1b29a674511'
 ),
 (
     'AYU002', 
@@ -47,10 +43,8 @@ INSERT INTO `medicines` (
     'BATCH-TRI-2025-02', 
     'Vindhya Herbal Reserve, UP', 
     'Amalaki, Haritaki, Bibhitaki in equal proportions', 
-    '2 tablets before sleep with lukewarm water.', 
     'Classical digestive stimulant and colon detox formulation.', 
-    'RECORDED', 
-    ''
+    '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92'
 ),
 (
     'AYU003', 
@@ -64,24 +58,22 @@ INSERT INTO `medicines` (
     'BATCH-MAH-2025-03', 
     'Kerala Herbal Estate', 
     'Sesame oil base, Bilva, Ashwagandha, Bala, Shatavari, Rasna', 
-    'Apply warm oil over affected joints and massage gently.', 
     'Classical formulation for neuromuscular and joint mobility support.', 
-    'PENDING', 
-    ''
+    NULL
 );
 
 -- 2. Insert Lab Quality Documents
-INSERT INTO `medicine_documents` (`medicine_id`, `document_name`, `file_path`, `file_size`, `file_type`, `certificate_hash`) VALUES
+INSERT IGNORE INTO `medicine_documents` (`medicine_id`, `document_name`, `file_path`, `file_size`, `file_type`, `certificate_hash`) VALUES
 ('AYU001', 'NABL_Lab_Quality_Cert_AYU001.pdf', 'storage/certificates/demo_ashwagandha_cert.pdf', 1048576, 'application/pdf', '3a7be4b84b8d7522d109f25712f6ecf911964f4347ecfe54be0ad1b29a674511'),
 ('AYU002', 'Heavy_Metal_Purity_Analysis_AYU002.pdf', 'storage/certificates/demo_triphala_cert.pdf', 845210, 'application/pdf', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92');
 
 -- 3. Insert Mined Blockchain Records (With SHA-256 Hashes & Block Numbers)
-INSERT INTO `blockchain_records` (`medicine_id`, `batch_number`, `record_hash`, `certificate_hash`, `transaction_hash`, `block_number`, `blockchain_timestamp`) VALUES
+INSERT IGNORE INTO `blockchain_records` (`medicine_id`, `batch_number`, `record_hash`, `certificate_hash`, `transaction_hash`, `block_number`, `blockchain_timestamp`) VALUES
 ('AYU001', 'BATCH-ASH-2025-01', SHA2('AYU001BATCH-ASH-2025-012025-01-152027-01-15', 256), '3a7be4b84b8d7522d109f25712f6ecf911964f4347ecfe54be0ad1b29a674511', '0x8a92f8b1c4e7d3a5620194857201847583920194857201847583920194857201', 101, 1736937000),
 ('AYU002', 'BATCH-TRI-2025-02', SHA2('AYU002BATCH-TRI-2025-022025-02-102028-02-10', 256), '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '0x7e29471b05819385cba728194857291048572910485729104857291048572910', 102, 1739183400);
 
 -- 4. Insert Supply Chain Tracking History
-INSERT INTO `medicine_history` (`medicine_id`, `batch_number`, `status`, `location`, `remarks`, `transaction_hash`, `block_number`) VALUES
+INSERT IGNORE INTO `medicine_history` (`medicine_id`, `batch_number`, `status`, `location`, `action_details`, `transaction_hash`, `block_number`) VALUES
 ('AYU001', 'BATCH-ASH-2025-01', 'Manufactured', 'Haridwar Manufacturing Plant #4', 'Batch manufactured, chemical tested, and hermetically sealed.', '0x8a92f8b1c4e7d3a5620194857201847583920194857201847583920194857201', 101),
 ('AYU001', 'BATCH-ASH-2025-01', 'Dispatched', 'Central Ayurvedic Logistics Hub, Delhi', 'Dispatched in GPS-monitored climate-controlled carrier.', '0x9b83c7d6e5f4a3b2c1d0e9f8a7b6c5d4e3f2a1b0c9d8e7f6a5b4c3d2e1f0a9b8', 103),
 ('AYU001', 'BATCH-ASH-2025-01', 'Received', 'Regional AYUSH Distribution Center, Mumbai', 'Stock received, barcode verified, placed in dry herbal cold storage.', '0xa1b2c3d4e5f67890123456789abcdef0123456789abcdef0123456789abcdef0', 105),
