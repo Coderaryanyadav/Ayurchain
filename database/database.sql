@@ -78,10 +78,10 @@ CREATE TABLE IF NOT EXISTS medicine_history (
     FOREIGN KEY (medicine_id) REFERENCES medicines(medicine_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Default Admin
+-- Default Admin (Password: admin123)
 INSERT INTO admins (username, password, full_name, email) VALUES
-('admin', '$2y$10$wE1f/a0dR1eC.mK.0N9Nje/z5h7.sLd.8xP6V10aB/2O/vB.7n1qG', 'System Administrator', 'admin@ayurvedicblockchain.org')
-ON DUPLICATE KEY UPDATE username=username;
+('admin', '$2y$10$L2hHVsNM6/M4tEuA/MYmlOON5yABnE5r4HJnQORNA6PkTlYb.aWCy', 'System Administrator', 'admin@ayurchain.org')
+ON DUPLICATE KEY UPDATE password=VALUES(password), email=VALUES(email);
 
 -- Seed Sample Medicines
 INSERT INTO medicines (

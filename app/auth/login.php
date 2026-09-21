@@ -132,8 +132,11 @@ require_once __DIR__ . '/../includes/header.php';
 
                     <div class="mt-4 p-3 bg-light rounded text-center border">
                         <small class="text-muted d-block mb-1">Local Testing Credentials:</small>
-                        <small class="d-block fw-bold text-dark">Username: <code>admin</code></small>
-                        <small class="d-block fw-bold text-dark">Password: <code>admin123</code></small>
+                        <small class="d-block fw-bold text-dark mb-1">Username: <code>admin</code> or <code>admin@ayurchain.org</code></small>
+                        <small class="d-block fw-bold text-dark mb-2">Password: <code>admin123</code></small>
+                        <button type="button" class="btn btn-sm btn-outline-success w-100" onclick="document.getElementById('login_input').value='admin'; document.getElementById('password').value='admin123';">
+                            <i class="fa-solid fa-wand-magic-sparkles me-1"></i> ⚡ Auto-Fill Credentials
+                        </button>
                     </div>
                 </div>
             </div>
