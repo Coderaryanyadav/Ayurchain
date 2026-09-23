@@ -1,13 +1,14 @@
 @echo off
-setlocal EnableDelayedExpansion
-title AYURCHAIN - 1-Click Complete System Setup
+title AYURCHAIN - 1-Click Setup (No Admin Required)
 color 0A
 
-:: Check for Administrator Privileges
-net session >nul 2>&1
-if %errorLevel% neq 0 (
-    powershell -Command "Start-Process cmd -ArgumentList '/c \"\"%~dp0setup\setup.bat\"\"' -Verb RunAs"
-    exit /b
-)
+echo ====================================================================
+echo          AYURCHAIN - SETUP (NO ADMIN PRIVILEGES NEEDED)             
+echo ====================================================================
+echo.
 
-call "%~dp0setup\setup.bat"
+powershell -ExecutionPolicy Bypass -NoProfile -File "%~dp0setup\setup.ps1"
+
+echo.
+echo Press any key to continue...
+pause >nul
