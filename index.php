@@ -1,10 +1,8 @@
 <?php
 // ====================================================================
-// Root Entry Point
-// Project: AYURCHAIN
+// AYURCHAIN Master Application Entry Point
+// Project: AYURCHAIN - Blockchain-Based Ayurvedic Medicine Storage & Verification System
 // File: index.php
 // ====================================================================
 
-header("Location: app/public/index.php");
-exit();
-?>
+require_once __DIR__ . '/app/public/index.php';

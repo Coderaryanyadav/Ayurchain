@@ -147,11 +147,16 @@ Ayurchain/
 ├── setup/                              # Automated launchers & installation scripts
 │   ├── run_portable.bat                # Portable PHP built-in server launcher
 │   ├── setup.bat                       # Batch installer launcher
-│   └── setup.ps1                       # PowerShell automated environment installer
+│   ├── setup.ps1                       # PowerShell automated environment installer
+│   └── setup_new_computer.bat          # 1-click user setup launcher
 ├── storage/
 │   └── certificates/                   # Sample NABL lab quality test certificates
 ├── tests/
 │   └── test_runner.php                 # 10-step automated end-to-end verification test suite
+├── uploads/                            # User document uploads directory
+├── .htaccess                           # Apache/XAMPP URL rewrite configuration
+├── .gitignore                          # Git ignore definitions
+├── index.php                           # Master application entry point
 ├── vercel.json                         # Vercel serverless functions configuration
 └── README.md                           # Comprehensive GitHub documentation
 ```

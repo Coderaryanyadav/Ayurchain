@@ -1,0 +1,39 @@
+# ====================================================================
+# AYURCHAIN Apache Web Server Configuration
+# Project: AYURCHAIN - Blockchain-Based Ayurvedic Medicine Storage & Verification System
+# ====================================================================
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Static Assets Direct Passthrough
+    RewriteRule ^assets/(.*)$ assets/$1 [L]
+    RewriteRule ^storage/(.*)$ storage/$1 [L]
+    RewriteRule ^blockchain/(.*)$ blockchain/$1 [L]
+
+    # Clean Root Shortcuts to Application Modules
+    RewriteRule ^$ app/public/index.php [L,QSA]
+    RewriteRule ^index\.php$ app/public/index.php [L,QSA]
+    RewriteRule ^verify\.php$ app/public/verify.php [L,QSA]
+    RewriteRule ^about\.php$ app/public/about.php [L,QSA]
+    RewriteRule ^view_medicine\.php$ app/public/view_medicine.php [L,QSA]
+    RewriteRule ^medicines\.php$ app/admin/medicines.php [L,QSA]
+    RewriteRule ^dashboard\.php$ app/admin/dashboard.php [L,QSA]
+    RewriteRule ^history\.php$ app/admin/history.php [L,QSA]
+    RewriteRule ^add_medicine\.php$ app/admin/add_medicine.php [L,QSA]
+    RewriteRule ^edit_medicine\.php$ app/admin/edit_medicine.php [L,QSA]
+    RewriteRule ^delete_medicine\.php$ app/admin/delete_medicine.php [L,QSA]
+    RewriteRule ^profile\.php$ app/admin/profile.php [L,QSA]
+    RewriteRule ^change_password\.php$ app/admin/change_password.php [L,QSA]
+    RewriteRule ^login\.php$ app/auth/login.php [L,QSA]
+    RewriteRule ^logout\.php$ app/auth/logout.php [L,QSA]
+    RewriteRule ^test_runner\.php$ tests/test_runner.php [L,QSA]
+</IfModule>
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>

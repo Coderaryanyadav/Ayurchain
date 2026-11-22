@@ -144,10 +144,24 @@ Ayurchain/
 ├── database/
 │   ├── database.sql                  # MySQL schema definition
 │   └── sample-data.sql               # Seed medicines & blockchain records
+├── docs/
+│   └── VIVA_AND_PRESENTATION_GUIDE.md# Viva questions & evaluation reference
+├── setup/                            # Local environment & portable scripts
+│   ├── run_portable.bat              # Portable PHP built-in server launcher
+│   ├── setup.bat                     # Automated batch installer
+│   ├── setup.ps1                     # PowerShell automated setup script
+│   └── setup_new_computer.bat        # User setup launcher
 ├── storage/                          # Stored certificates & test files
+│   └── certificates/                 # Sample NABL lab test certificate PDFs
 ├── tests/
 │   └── test_runner.php               # Automated 10-step end-to-end test suite
-└── vercel.json                       # Vercel serverless function & routing configuration
+├── uploads/                          # User document uploads directory
+│   └── README.md                     # Uploads directory policy
+├── .htaccess                         # Apache/XAMPP URL rewrite configuration
+├── .gitignore                        # Git ignore specifications
+├── HOW_TO_RUN.md                     # Step-by-step presentation & setup manual
+├── index.php                         # Master application entry point
+└── vercel.json                       # Vercel serverless functions configuration
 ```
 
 ---
