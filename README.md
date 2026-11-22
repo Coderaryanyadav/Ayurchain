@@ -1,4 +1,5 @@
 # AYURCHAIN 🌿
+
 ### Blockchain-Based Ayurvedic Medicine Storage, Verification & Provenance System
 
 [![Vercel Deployment](https://img.shields.io/badge/Deployment-Vercel%20Live-success?style=flat-square&logo=vercel)](https://ayurchain-ten.vercel.app)
@@ -7,43 +8,70 @@
 [![Ethereum Ganache](https://img.shields.io/badge/Ethereum-Ganache%20Compatible-orange?style=flat-square&logo=ethereum)](https://trufflesuite.com/ganache/)
 [![Web3.js](https://img.shields.io/badge/Web3-Ethers.js%20v6-blue?style=flat-square)](blockchain/js/web3-contract.js)
 
-**Live Demo URL:** [https://ayurchain-ten.vercel.app](https://ayurchain-ten.vercel.app)  
-**Smart Contract:** `AyurvedicMedicineVerification.sol`  
-**Network Compatibility:** Ethereum Local Testnet (Ganache), Sepolia, Injected Provider (MetaMask)
+**Live Demo URL:**
+[https://ayurchain-ten.vercel.app](https://ayurchain-ten.vercel.app)\
+**Smart Contract:** `AyurvedicMedicineVerification.sol`\
+**Network Compatibility:** Ethereum Local Testnet (Ganache), Sepolia, Injected
+Provider (MetaMask)
 
 ---
 
 ## 📖 Overview
 
-**AYURCHAIN** provides an end-to-end provenance and anti-counterfeiting solution for the Ayurvedic herbal pharmaceutical industry. Traditional herbal formulations frequently face challenges regarding counterfeit batches, adulterated botanical ingredients, and falsified quality lab certificates.
+**AYURCHAIN** provides an end-to-end provenance and anti-counterfeiting solution
+for the Ayurvedic herbal pharmaceutical industry. Traditional herbal
+formulations frequently face challenges regarding counterfeit batches,
+adulterated botanical ingredients, and falsified quality lab certificates.
 
-AYURCHAIN addresses these challenges using a **hybrid Web2 + Web3 architecture**:
-1. **Off-Chain Relational Storage (MySQL / SQLite)**: Stores detailed botanical characteristics, sourcing origins, manufacturing batch parameters, active herbs, and document metadata.
-2. **On-Chain Cryptographic Immutability (Solidity Smart Contract)**: Anchors digital signatures, combined batch hashes, and SHA-256 certificate hashes on the blockchain ledger.
-3. **Public Zero-Gas Verification**: Enables consumers, distributors, and regulators to verify authenticity and inspect lifecycle history in real time.
+AYURCHAIN addresses these challenges using a **hybrid Web2 + Web3
+architecture**:
+
+1. **Off-Chain Relational Storage (MySQL / SQLite)**: Stores detailed botanical
+   characteristics, sourcing origins, manufacturing batch parameters, active
+   herbs, and document metadata.
+2. **On-Chain Cryptographic Immutability (Solidity Smart Contract)**: Anchors
+   digital signatures, combined batch hashes, and SHA-256 certificate hashes on
+   the blockchain ledger.
+3. **Public Zero-Gas Verification**: Enables consumers, distributors, and
+   regulators to verify authenticity and inspect lifecycle history in real time.
 
 ---
 
 ## ⚡ Key Architecture & Features
 
 ### 1. Dual-Engine Database Architecture
-- **Production MySQL**: Connects to MySQL/MariaDB for full relational capabilities using prepared PDO statements.
-- **Serverless SQLite Fallback**: Auto-seeds database schema and sample records when deployed in cloud environments or on Vercel Functions.
+
+- **Production MySQL**: Connects to MySQL/MariaDB for full relational
+  capabilities using prepared PDO statements.
+- **Serverless SQLite Fallback**: Auto-seeds database schema and sample records
+  when deployed in cloud environments or on Vercel Functions.
 
 ### 2. Client-Side Cryptographic Hashing
-- Files uploaded by manufacturers (e.g. NABL purity certificates) are hashed in the browser via the Web Crypto API (`crypto.subtle.digest("SHA-256")`).
-- The digital fingerprint is anchored to the smart contract, preventing post-upload certificate substitution.
+
+- Files uploaded by manufacturers (e.g. NABL purity certificates) are hashed in
+  the browser via the Web Crypto API (`crypto.subtle.digest("SHA-256")`).
+- The digital fingerprint is anchored to the smart contract, preventing
+  post-upload certificate substitution.
 
 ### 3. Supply Chain Provenance Tracking
+
 Tracks five standardized lifecycle milestones:
 $$\text{Manufactured} \longrightarrow \text{Dispatched} \longrightarrow \text{Received} \longrightarrow \text{Distributed} \longrightarrow \text{Sold}$$
-Each milestone records block numbers, transaction hashes, locations, and timestamps.
+
+Each milestone records block numbers, transaction hashes, locations, and
+timestamps.
 
 ### 4. Interactive QR Verification
-Each registered medicine features dynamic QR code generation containing the public verification URL. Mobile devices can scan and verify the physical bottle directly.
+
+Each registered medicine features dynamic QR code generation containing the
+public verification URL. Mobile devices can scan and verify the physical bottle
+directly.
 
 ### 5. Tamper Detection Demo Mode
-The public portal includes simulated tampering tests demonstrating how altering off-chain expiry dates or certificates triggers cryptographic hash mismatches against Block #101.
+
+The public portal includes simulated tampering tests demonstrating how altering
+off-chain expiry dates or certificates triggers cryptographic hash mismatches
+against Block #101.
 
 ---
 
@@ -127,13 +155,18 @@ Ayurchain/
 ## 🚀 Deployment & Local Setup
 
 ### Option 1: Live Cloud Deployment (Vercel)
+
 The project is configured for one-click deployment on Vercel:
+
 ```bash
 npx vercel deploy --prod
 ```
-The serverless router (`api/index.php`) and universal PDO database handler auto-configure SQLite and static asset routes automatically.
+
+The serverless router (`api/index.php`) and universal PDO database handler
+auto-configure SQLite and static asset routes automatically.
 
 ### Option 2: Local XAMPP / Apache
+
 1. Move the repository folder into your server root:
    - Windows: `C:\xampp\htdocs\ayurvedic-blockchain`
    - macOS / Linux: `/var/www/html/ayurvedic-blockchain`
@@ -144,6 +177,7 @@ The serverless router (`api/index.php`) and universal PDO database handler auto-
 4. Access the web portal at `http://localhost/ayurvedic-blockchain/`.
 
 ### Default Credentials
+
 - **Username / Email:** `admin` or `admin@ayurchain.org`
 - **Password:** `admin123`
 
@@ -152,6 +186,7 @@ The serverless router (`api/index.php`) and universal PDO database handler auto-
 ## 🧪 Automated Testing
 
 Run the included verification suite directly via browser or CLI:
+
 ```bash
 # Via Web Browser / Vercel:
 https://ayurchain-ten.vercel.app/test_runner.php
@@ -160,11 +195,14 @@ https://ayurchain-ten.vercel.app/test_runner.php
 php tests/test_runner.php
 ```
 
-All 10 core verification tests validate database connectivity, bcrypt authentication, cryptographic SHA-256 record hashes, tamper rejection, and supply chain integrity.
+All 10 core verification tests validate database connectivity, bcrypt
+authentication, cryptographic SHA-256 record hashes, tamper rejection, and
+supply chain integrity.
 
 ---
 
 ## 📜 Authors & Acknowledgments
 
-- **Aryan Yadav** – Architecture, Smart Contract & Web3 Integration  
-- **AyurChain Project Team** – Research, Botanical Standardization & Documentation  
+- **Aryan Yadav** – Architecture, Smart Contract & Web3 Integration
+- **AyurChain Project Team** – Research, Botanical Standardization &
+  Documentation

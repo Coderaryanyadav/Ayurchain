@@ -1,115 +1,157 @@
-# 🌿 AYURCHAIN – Simple Step-by-Step Guide
+# 🌿 AYURCHAIN – Complete Setup & Presentation Guide
 
 **Project:** Blockchain-Based Ayurvedic Medicine Storage and Verification System  
+**Live Production URL (Vercel):** [https://ayurchain-ten.vercel.app](https://ayurchain-ten.vercel.app)  
 **GitHub Repository:** [https://github.com/Coderaryanyadav/Ayurchain](https://github.com/Coderaryanyadav/Ayurchain)  
 
 ---
 
-## ⚡ Super Quick Start (In 3 Steps)
+## ⚡ 1-Click Online Demo (Zero Setup Required)
 
-### 📌 Step 1: Start XAMPP & Import Database
-1. Open **XAMPP Control Panel** on your computer.
-2. Click **Start** button next to **Apache** and **MySQL** (both should turn green).
-3. Open your browser and go to: [http://localhost/phpmyadmin](http://localhost/phpmyadmin)
-4. Click **New** on the left menu:
-   - Database name: `ayurvedic_blockchain`
-   - Click **Create**
-5. Click on the **SQL** tab at the top.
-6. Open the file [`database/database.sql`](database/database.sql), copy everything, paste into SQL box, and click **Go**.
-7. Open the file [`database/sample-data.sql`](database/sample-data.sql), copy everything, paste into SQL box, and click **Go**.
+You can access and test the entire AyurChain platform live right in your web browser:
 
----
-
-### 📌 Step 2: Open the Website
-Ensure this project folder is located in `C:\xampp\htdocs\ayurvedic-blockchain`  
-*(or run `php -S localhost:8000` in the terminal inside this folder)*.
-
-Open these URLs in your web browser:
-
-| Page | URL | Purpose |
+| Portal | URL | Description |
 | :--- | :--- | :--- |
-| 🏠 **Home Page** | `http://localhost/ayurvedic-blockchain/app/public/index.php` | Search medicines & see statistics |
-| 🛡️ **Verify Portal** | `http://localhost/ayurvedic-blockchain/app/public/verify.php` | Test verification & tamper detection |
-| 🔐 **Admin Login** | `http://localhost/ayurvedic-blockchain/app/auth/login.php` | Admin panel login |
+| 🏠 **Home Landing Page** | [https://ayurchain-ten.vercel.app](https://ayurchain-ten.vercel.app) | Instant batch lookup, live stats, formulation showcase |
+| 🛡️ **Public Verification Portal** | [https://ayurchain-ten.vercel.app/verify.php](https://ayurchain-ten.vercel.app/verify.php) | Live cryptographic hash verification & tamper simulation |
+| 💊 **Medicines Directory** | [https://ayurchain-ten.vercel.app/medicines.php](https://ayurchain-ten.vercel.app/medicines.php) | Botanical formulations, lab test records & QR generator |
+| 🚚 **Supply Chain Provenance** | [https://ayurchain-ten.vercel.app/history.php](https://ayurchain-ten.vercel.app/history.php) | 5-stage timeline from harvest to retail delivery |
+| 🔐 **Admin Management Portal** | [https://ayurchain-ten.vercel.app/login.php](https://ayurchain-ten.vercel.app/login.php) | Admin dashboard, analytics charts & medicine registration |
+| 🧪 **Automated Test Suite** | [https://ayurchain-ten.vercel.app/test_runner.php](https://ayurchain-ten.vercel.app/test_runner.php) | Live 10-step end-to-end verification test suite |
 
----
-
-### 📌 Step 3: Admin Login Credentials
-
-- **Email:** `admin@ayurchain.org`
+### 🔐 Admin Login Credentials
+- **Username / Email:** `admin` or `admin@ayurchain.org`
 - **Password:** `admin123`
 
 ---
 
-## 🎬 How to Show the Demo to Teachers / Evaluators
+## 💻 Local Setup & Execution Guide
 
-### 🧪 Demo 1: Show Public Blockchain Verification
-1. Open `http://localhost/ayurvedic-blockchain/app/public/verify.php`
-2. Click the green button: **"Demo Batch 1 (AYU001 - Ashwagandha)"**
-3. **What happens:**  
-   - Shows **✓ Blockchain Record Verified**
-   - Shows Block #101 and Transaction Hash
-   - Shows Lab Quality Certificate details and SHA-256 hash match!
+### Option A: Portable PHP Built-In Server (Fastest Local Setup)
 
----
-
-### 🧪 Demo 2: Show Tamper Detection (Security Feature)
-1. On the same verify page, click the red button: **"Demo Tampered Batch (Tamper Alert)"**
-2. **What happens:**  
-   - Instantly shows **⚠ Verification Failed (Tampering Detected!)**
-   - Explains that someone tried to modify the record or certificate off-chain, and the blockchain cryptographic hash mismatch caught it!
+1. Open a terminal / command prompt in this project folder:
+   ```bash
+   cd Ayurchain
+   ```
+2. Start the local server:
+   ```bash
+   php -S localhost:8000
+   ```
+3. Open `http://localhost:8000` in your browser.  
+   *(The universal database automatically initializes SQLite in `database/ayurvedic_blockchain.sqlite` with all seed data if MySQL is not running).*
 
 ---
 
-### 🧪 Demo 3: Add a New Ayurvedic Medicine
-1. Log into Admin Panel (`http://localhost/ayurvedic-blockchain/app/auth/login.php`).
-2. Click **Add Medicine** on the top menu.
-3. Click the yellow button: **"⚡ Fill Demo Data"** (auto-fills all fields like Name, Batch, Expiry, Ingredients).
-4. Click **Save Medicine Record**.
-5. Click **"⚡ Simulate Mining (Demo Mode)"** (or use MetaMask with Ganache).
-6. **Result:** A new block is mined and the medicine is recorded permanently on the blockchain!
+### Option B: Local XAMPP Setup (Apache + MySQL)
+
+1. **Move Folder**: Copy this project folder into your XAMPP web root:
+   - Windows: `C:\xampp\htdocs\ayurvedic-blockchain`
+   - macOS: `/Applications/XAMPP/xamppfiles/htdocs/ayurvedic-blockchain`
+2. **Start Services**: Open XAMPP Control Panel and click **Start** on **Apache** and **MySQL**.
+3. **Import Database**:
+   - Navigate to `http://localhost/phpmyadmin`.
+   - Create database: `ayurvedic_blockchain`.
+   - Import `database/database.sql`, then import `database/sample-data.sql`.
+4. **Access Portal**: Open `http://localhost/ayurvedic-blockchain/` in your browser.
 
 ---
 
-### 🧪 Demo 4: Show QR Code Verification
-1. Go to any medicine details page (e.g. `app/public/view_medicine.php?id=AYU001`).
+## 🎬 Step-by-Step Presentation & Evaluation Guide
+
+### 🧪 Demo 1: Public Cryptographic Blockchain Verification
+1. Open the [Verification Portal](https://ayurchain-ten.vercel.app/verify.php).
+2. Click **"Demo Batch 1 (AYU001 - Ashwagandha)"**.
+3. **What happens:**
+   - Shows **✓ Blockchain Record Verified** with a green cryptographic shield.
+   - Displays Block **#101** and Transaction Hash `0x8a92f8b1c4e7...`.
+   - Confirms that the digital SHA-256 hash of the NABL purity certificate matches the on-chain smart contract ledger.
+
+---
+
+### 🧪 Demo 2: Tamper Detection (Anti-Counterfeiting Security)
+1. On the same page, click the red button: **"Demo Tampered Batch (Tamper Alert)"** (or visit `verify.php?medicine_id=AYU001&tamper=1`).
+2. **What happens:**
+   - Instantly triggers a high-visibility security alert: **⚠ Verification Failed (Tampering Detected!)**.
+   - Explains how someone attempted to alter the batch parameters or certificate off-chain, and the cryptographic hash mismatch against Block #101 caught the fraud.
+
+---
+
+### 🧪 Demo 3: Supply Chain Provenance (Farm to Bottle)
+1. Click **Supply Chain Provenance** on the top menu.
+2. Select **AYU001 - Ashwagandha Churna**.
+3. Inspect the 5 lifecycle milestones:
+   - **Manufactured**: Haridwar Manufacturing Plant #4 (Block #101)
+   - **Dispatched**: Central Ayurvedic Logistics Hub, Delhi (Block #103)
+   - **Received**: Regional AYUSH Distribution Center, Mumbai (Block #105)
+
+---
+
+### 🧪 Demo 4: Mobile QR Code Generation
+1. Visit the details page of any formulation (e.g. `view_medicine.php?id=AYU001`).
 2. Click **"Generate QR Code"**.
-3. A QR code opens on screen. Anyone can scan it with a mobile phone camera to verify the medicine batch instantly!
+3. A high-resolution QR code appears on screen that can be scanned using any smartphone camera to verify the physical medicine bottle in real time.
 
 ---
 
-### 🧪 Demo 5: Show Supply Chain History
-1. In the top navigation bar, click **Blockchain Records** (`app/admin/history.php`).
-2. Select any medicine batch.
-3. See every step in order:
-   - **Manufactured** (Plant #4)
-   - **Dispatched** (Central Logistics Hub, Delhi)
-   - **Received** (Cold Storage, Mumbai)
-4. Each step shows its own blockchain transaction hash and block number!
+## 📁 Repository Tree Structure
 
----
-
-## ⚙️ Optional: Connecting Real MetaMask & Ganache
-
-If you want to show live MetaMask popups:
-1. Open **Ganache** (listening on `127.0.0.1:7545`).
-2. In MetaMask, add a custom network:
-   - RPC URL: `http://127.0.0.1:7545`
-   - Chain ID: `1337` (or `5777`)
-3. Deploy [`blockchain/contracts/AyurvedicMedicineVerification.sol`](blockchain/contracts/AyurvedicMedicineVerification.sol) in [Remix IDE](https://remix.ethereum.org).
-4. Paste the deployed contract address into [`blockchain/js/contract-config.js`](blockchain/js/contract-config.js).
-
-*(Note: The built-in Demo Simulator also works 100% offline without needing MetaMask or Ganache running).*
-
----
-
-## ❓ Frequently Asked Questions (Troubleshooting)
-
-**Q: Database connection error?**  
-👉 Check if MySQL is running in XAMPP and make sure database name is `ayurvedic_blockchain`.
-
-**Q: CSS or JS styles not loading?**  
-👉 Make sure the project folder name inside `htdocs` is `ayurvedic-blockchain`.
-
-**Q: How to reset all sample data?**  
-👉 Re-import [`database/sample-data.sql`](database/sample-data.sql) in phpMyAdmin anytime.
+```text
+Ayurchain/
+├── api/
+│   └── index.php                       # Vercel serverless router and asset streamer
+├── app/
+│   ├── admin/                          # Administrative control pages
+│   │   ├── add_medicine.php            # Register new Ayurvedic formulations & lab certificates
+│   │   ├── change_password.php         # Admin credential security
+│   │   ├── dashboard.php               # Analytics metrics & dynamic Chart.js
+│   │   ├── delete_medicine.php         # Clean up medicine records
+│   │   ├── edit_medicine.php           # Edit botanical metadata
+│   │   ├── history.php                 # Supply chain provenance tracker
+│   │   ├── medicines.php               # Full paginated medicine directory
+│   │   ├── profile.php                 # Admin profile settings
+│   │   └── view_medicine.php           # Admin medicine detail router
+│   ├── api/                            # Internal JSON REST endpoints
+│   │   ├── add_history_record.php      # Milestone recording endpoint
+│   │   └── save_blockchain_record.php  # On-chain mined transaction storage
+│   ├── auth/                           # Authentication modules
+│   │   ├── login.php                   # CSRF protected admin login
+│   │   └── logout.php                  # Session termination
+│   ├── config/
+│   │   └── database.php                # Universal MySQL + SQLite PDO connection
+│   ├── includes/                       # Shared UI templates & security helpers
+│   │   ├── auth.php                    # Session handling & CSRF verification
+│   │   ├── footer.php                  # Global footer with Web3, QR & theme JS
+│   │   ├── functions.php               # XSS sanitization & helper utilities
+│   │   └── header.php                  # Global navigation bar & Sanskrit motto
+│   └── public/                         # Public customer-facing pages
+│       ├── about.php                   # Project documentation & smart contract specs
+│       ├── index.php                   # Landing portal with live batch search
+│       ├── verify.php                  # Real-time verification & tamper detection
+│       └── view_medicine.php           # Botanical attributes & QR generator
+├── assets/
+│   ├── css/
+│   │   └── style.css                   # Ayurvedic visual theme & responsive styles
+│   └── js/
+│       └── script.js                   # Client-side Web Crypto SHA-256 hashing
+├── blockchain/
+│   ├── contract/
+│   │   └── AyurvedicMedicineVerification.sol # Solidity smart contract (^0.8.0)
+│   └── js/
+│       ├── contract-config.js          # Deployed contract ABI & address
+│       └── web3-contract.js            # Ethers.js v6 + MetaMask connector
+├── database/
+│   ├── database.sql                    # MySQL schema definition
+│   └── sample-data.sql                 # Sample medicines & mined blockchain records
+├── docs/
+│   └── VIVA_AND_PRESENTATION_GUIDE.md  # Detailed college viva questions & answers
+├── setup/                              # Automated launchers & installation scripts
+│   ├── run_portable.bat                # Portable PHP built-in server launcher
+│   ├── setup.bat                       # Batch installer launcher
+│   └── setup.ps1                       # PowerShell automated environment installer
+├── storage/
+│   └── certificates/                   # Sample NABL lab quality test certificates
+├── tests/
+│   └── test_runner.php                 # 10-step automated end-to-end verification test suite
+├── vercel.json                         # Vercel serverless functions configuration
+└── README.md                           # Comprehensive GitHub documentation
+```
