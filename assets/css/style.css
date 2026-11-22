@@ -1,0 +1,327 @@
+/* ====================================================================
+   AYURCHAIN - Complete Visual & UI Design System
+   Subtitle: Blockchain-Based Ayurvedic Medicine Storage & Verification System
+   File: assets/css/style.css
+   ==================================================================== */
+
+:root {
+    --dark-green: #081c15;
+    --primary-green: #1b4332;
+    --accent-green: #2d6a4f;
+    --mint-green: #52b788;
+    --light-green: #d8f3dc;
+    --cream-bg: #fcfbf7;
+    --gold: #d4af37;
+    --gold-hover: #b89628;
+    --gold-light: #fff8e7;
+    --dark-slate: #2b2d42;
+    --gray-bg: #f8f9fa;
+    --border-color: rgba(8, 28, 21, 0.08);
+    --card-shadow: 0 10px 30px rgba(8, 28, 21, 0.06);
+    --card-shadow-hover: 0 18px 40px rgba(8, 28, 21, 0.12);
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--cream-bg);
+    color: var(--dark-slate);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    letter-spacing: -0.1px;
+}
+
+.main-wrapper {
+    flex: 1;
+}
+
+/* Header & Navigation Bar */
+.navbar-ayurchain {
+    background: linear-gradient(135deg, #081c15 0%, #1b4332 100%) !important;
+    border-bottom: 3px solid var(--gold);
+    padding: 0.85rem 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.navbar-ayurchain .navbar-brand {
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: #ffffff !important;
+    letter-spacing: 0.5px;
+}
+
+.navbar-ayurchain .navbar-brand span {
+    color: var(--gold);
+}
+
+.navbar-subtitle {
+    font-size: 0.72rem;
+    color: var(--light-green);
+    letter-spacing: 0.3px;
+    font-weight: 500;
+    display: block;
+}
+
+.navbar-ayurchain .nav-link {
+    color: rgba(255, 255, 255, 0.88) !important;
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 0.55rem 0.95rem;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-radius: 8px;
+}
+
+.navbar-ayurchain .nav-link:hover,
+.navbar-ayurchain .nav-link.active {
+    color: var(--gold) !important;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+/* Hero Banner */
+.hero-section {
+    background: linear-gradient(135deg, var(--dark-green) 0%, var(--primary-green) 50%, var(--accent-green) 100%);
+    color: white;
+    padding: 75px 0 65px 0;
+    border-radius: 0 0 32px 32px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(8, 28, 21, 0.15);
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-title {
+    font-weight: 800;
+    font-size: 2.85rem;
+    letter-spacing: -0.8px;
+    line-height: 1.15;
+}
+
+.hero-title span {
+    color: var(--gold);
+}
+
+.hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--light-green);
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* Modern Card Styling */
+.card-ayur {
+    border: 1px solid var(--border-color);
+    background-color: #ffffff;
+    border-radius: 18px;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card-ayur:hover {
+    box-shadow: var(--card-shadow-hover);
+}
+
+.card-header-ayur {
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--accent-green) 100%);
+    color: #ffffff;
+    border-top-left-radius: 17px !important;
+    border-top-right-radius: 17px !important;
+    font-weight: 700;
+    border-bottom: 3px solid var(--gold);
+}
+
+/* Stat Cards */
+.stat-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+    border-left: 5px solid var(--primary-green);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-shadow-hover);
+}
+
+.stat-card.gold-border {
+    border-left-color: var(--gold);
+}
+
+.stat-card.mint-border {
+    border-left-color: var(--mint-green);
+}
+
+.stat-card.dark-border {
+    border-left-color: var(--dark-green);
+}
+
+.stat-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+/* Verification Badges */
+.badge-category {
+    background-color: var(--light-green);
+    color: var(--primary-green);
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+}
+
+.badge-verified-onchain {
+    background-color: var(--primary-green);
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+}
+
+.badge-offchain {
+    background-color: #f8f9fa;
+    color: var(--dark-slate);
+    border: 1px solid #dee2e6;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+}
+
+/* Buttons */
+.btn-gold {
+    background: linear-gradient(135deg, #d4af37 0%, #b89628 100%);
+    color: var(--dark-green);
+    font-weight: 700;
+    border: none;
+    padding: 0.65rem 1.6rem;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-gold:hover {
+    background: linear-gradient(135deg, #e5c148 0%, #d4af37 100%);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.btn-ayur {
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--accent-green) 100%);
+    color: #ffffff;
+    font-weight: 600;
+    border: none;
+    padding: 0.65rem 1.6rem;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-ayur:hover {
+    background: linear-gradient(135deg, var(--accent-green) 0%, var(--dark-green) 100%);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Tables */
+.table-ayur th {
+    background-color: var(--dark-green) !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    font-size: 0.88rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+}
+
+.table-ayur td {
+    padding: 1rem 0.85rem;
+}
+
+/* Empty State Container */
+.empty-state-box {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 16px;
+}
+
+.empty-state-icon {
+    width: 80px;
+    height: 80px;
+    background-color: var(--light-green);
+    color: var(--primary-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    margin: 0 auto 20px auto;
+}
+
+/* Loading Overlay & Spinner */
+.loading-spinner-wrapper {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+}
+
+.loading-spinner-wrapper div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 51px;
+    height: 51px;
+    margin: 6px;
+    border: 6px solid var(--gold);
+    border-radius: 50%;
+    animation: spinner-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: var(--gold) transparent transparent transparent;
+}
+
+.loading-spinner-wrapper div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+
+.loading-spinner-wrapper div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+
+.loading-spinner-wrapper div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+
+@keyframes spinner-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Footer */
+footer.ayur-footer {
+    background: linear-gradient(135deg, #081c15 0%, #1b4332 100%);
+    color: rgba(255, 255, 255, 0.8);
+    border-top: 3px solid var(--gold);
+    padding: 45px 0 25px 0;
+    margin-top: 70px;
+}

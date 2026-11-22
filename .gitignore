@@ -1,0 +1,21 @@
+# System / IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# Environment & local databases
+.env
+app/config/config.php
+*.sqlite
+*.sqlite3
+*.db
+.vercel
+
+# Storage & Uploads Security
+storage/certificates/*
+!storage/certificates/.gitkeep
+!storage/certificates/demo_*.pdf
+uploads/*
+!uploads/README.md
